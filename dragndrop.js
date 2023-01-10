@@ -13,8 +13,8 @@ oriani_2.onmousedown = function(event){drag_and_drop(event, oriani_2)};
 oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
 
       function drag_and_drop(event, selfObj) {
-        let shiftX = event.clientX - selfObj.getBoundingClientRect().left - 25;    // GLITCH WHEN MOVING IS CAUSED BY VISUAL OVERLAP
-        let shiftY = event.clientY - selfObj.getBoundingClientRect().top - 25;     // KMS BRUUH CANT HAVE SHITE IN DETROITU
+        let shiftX = event.clientX - selfObj.getBoundingClientRect().left - 25;    
+        let shiftY = event.clientY - selfObj.getBoundingClientRect().top - 25;
   
         selfObj.style.position = 'absolute';
         selfObj.style.zIndex = 1000;
@@ -38,8 +38,8 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
         document.addEventListener('mouseup', function(event) {   
           // console.log("I WORK HERE??")
           document.removeEventListener('mousemove', onMouseMove);
-          selfObj.onmouseup = null;                                  //   ES AQQQ
-          selfObj.body = this.hidden //aq
+          selfObj.onmouseup = null;                                 
+          selfObj.onmousedown = function(event){}                    // FIXXED (MAGRAM ISE QENI ROM MXOLOD ROCA UJREBSHI SHEDIS MASHIN GAETISHOS)  
           setInStone();
         });
 
@@ -63,8 +63,9 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           selfObj.hidden = false;
   
 
-          document.addEventListener('keydown', function(event) {           
-            if(event.key == "r") {
+          document.addEventListener('keydown', function(event) {     
+            lever2 = true;                                            //FIXED THE INITIAL SHIP LEAVING A SHADOW IF ROTATED
+            if(event.key == "r" || event.key == "R") {
               if(!lever){
                 lever = true;
                 if(rotation < 1){
@@ -72,15 +73,16 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
                 }else{
                   rotation = 0;
                 }
-                selfObj.style.tansform = 'rotate(90)';
+                // selfObj.style.tansform = 'rotate(90)';
               }
+              setInStone();
             }
-            setInStone();
+            
         });
 
           document.addEventListener('keyup', function(event) { 
               lever = false;
-              amogus();
+              // amogus();                                                //FIX ME PLZ
           });
 
 
