@@ -30,16 +30,16 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
             selfObj.style.left = pageX - shiftX + 'px';
             selfObj.style.top = pageY - shiftY + 'px';
           }
-          // console.log("im working");
           for (let i = 1; i < amongaia.length; i++) {
             amongaia[i].style.background = 'pink';
           }
           
         document.addEventListener('mouseup', function(event) {   
-          // console.log("I WORK HERE??")
           document.removeEventListener('mousemove', onMouseMove);
-          selfObj.onmouseup = null;                                 
-          selfObj.onmousedown = function(event){}                    // FIXXED (MAGRAM ISE QENI ROM MXOLOD ROCA UJREBSHI SHEDIS MASHIN GAETISHOS)  
+          selfObj.onmouseup = null;
+          if(pageX - shiftX <= 600 && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){        
+            selfObj.onmousedown = function(event){};
+          };
           setInStone();
         });
 
@@ -73,9 +73,11 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
                 }else{
                   rotation = 0;
                 }
-                // selfObj.style.tansform = 'rotate(90)';
+                selfObj.style.tansform = 'rotate(90)';
               }
+              amogus();
               setInStone();
+              console.log(amongaia);
             }
             
         });
@@ -248,9 +250,9 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
 
       function enemyCoords(coords, selfCoords){
         element = document.querySelector(`[id^="${coords}"]`);
-        checkerElement = document.querySelector(`[id="${coords} tagged"]`);
+        checkerElement = document.querySelectorAll(`[id$="tagged"]`);
         self = document.querySelectorAll(".clickable")[selfCoords];
-        if(checkerElement == null){                                             //FIX THIS
+        if(!element == checkerElement.forEach(element => { return element})){                                             //FIX THIS
           element.style.background = "blue";
           self.style.background = "black";
           function miss(){
@@ -258,12 +260,15 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           }
           window.setTimeout(miss, 150);
         }
-        else if(checkerElement == element){
+        else if(element == checkerElement.forEach(element => { return element})){
           element.style.background = "red";
           self.style.background = "white";
         }
         else{
           console.log("Something went wrong!!");
+          console.log(checkerElement)
+          console.log(element)
+          console.log(checkerElement.forEach(element => { return element}))                                               //FIX THIS
         }
         self.onclick = function(event){}; //es ashorebs click powers basiskali
         // self.hidden = true;              es sxva versia zeda xazis, tumca lamazi araris, tan amit fers ver shevucvli
