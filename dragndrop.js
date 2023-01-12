@@ -6,7 +6,7 @@ var lever = false;
 var lever2 = false;
 var location_buffer;
 var tagged_elements = [""];
-var amongaia = [""];
+var amongaia = [];
 
 oriani_1.onmousedown = function(event){drag_and_drop(event, oriani_1)};
 oriani_2.onmousedown = function(event){drag_and_drop(event, oriani_2)};
@@ -77,7 +77,6 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
               }
               amogus();
               setInStone();
-              console.log(amongaia);
             }
             
         });
@@ -252,7 +251,7 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
         element = document.querySelector(`[id^="${coords}"]`);
         checkerElement = document.querySelectorAll(`[id$="tagged"]`);
         self = document.querySelectorAll(".clickable")[selfCoords];
-        if(!element == checkerElement.forEach(element => { return element})){                                             //FIX THIS
+        if(!amongaia.includes(element)){                                             
           element.style.background = "blue";
           self.style.background = "black";
           function miss(){
@@ -260,15 +259,16 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           }
           window.setTimeout(miss, 150);
         }
-        else if(element == checkerElement.forEach(element => { return element})){
+        else if(amongaia.includes(element)){
           element.style.background = "red";
           self.style.background = "white";
         }
         else{
-          console.log("Something went wrong!!");
-          console.log(checkerElement)
+          // console.log("Something went wrong!!");
           console.log(element)
-          console.log(checkerElement.forEach(element => { return element}))                                               //FIX THIS
+          // console.log(element)
+          var answers = amongaia.forEach(index => {index == element}) ;                                
+          console.log(amongaia.includes(element));
         }
         self.onclick = function(event){}; //es ashorebs click powers basiskali
         // self.hidden = true;              es sxva versia zeda xazis, tumca lamazi araris, tan amit fers ver shevucvli
@@ -282,12 +282,12 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
 
 
 
-      //CREATE FUNTCTION 'SET IN STONE'
-      //WHEN TOUCHING OTHER SHIPS THE PINK BLOCKS DISSAPEAR
+      //CREATE FUNTCTION 'SET IN STONE'     //DONE
+      //WHEN TOUCHING OTHER SHIPS THE PINK BLOCKS DISSAPEAR       
       //MAKE IT NOT DO THAT
 
 
-      //FIRST DO THE PROPER ONMOUSEUP FUNCTION
+      //FIRST DO THE PROPER ONMOUSEUP FUNCTION    //DONE
 
 
-      //DESIGN A SYSTEM THAT FINDS SHIPS IN REAL SPACE,
+      //DESIGN A SYSTEM THAT FINDS SHIPS IN REAL SPACE  //DONE, BETTER WAY
