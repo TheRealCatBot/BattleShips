@@ -6,16 +6,19 @@ var lever = false;
 var lever2 = false;
 var location_buffer;
 var tagged_elements = [""];
-var amongaia = [];
+
+var overlapTaggedElements = new Array(21);
+for (var i = 0; i < overlapTaggedElements.length; i++) {
+  overlapTaggedElements[i] = new Array(2);
+}
 
 oriani_1.onmousedown = function(event){drag_and_drop(event, oriani_1)};
 oriani_2.onmousedown = function(event){drag_and_drop(event, oriani_2)};
 oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
 
       function drag_and_drop(event, selfObj) {
-        let shiftX = event.clientX - selfObj.getBoundingClientRect().left - 25;    
+        let shiftX = event.clientX - selfObj.getBoundingClientRect().left - 25;
         let shiftY = event.clientY - selfObj.getBoundingClientRect().top - 25;
-  
         selfObj.style.position = 'absolute';
         selfObj.style.zIndex = 1000;
         document.body.append(selfObj);
@@ -23,9 +26,13 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
         moveAt(event.pageX, event.pageY);
   
         function moveAt(pageX, pageY) {
-          if(pageX - shiftX <= 600 && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){
+          if((pageX - shiftX >= 5 && pageX - shiftX <= 605) && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){      //AQ UNDA DAVAMATO OVERLAP-IS SAWINAAGMDEGO KODI
             selfObj.style.left = pageX - shiftX - (pageX - shiftX) % 50 + 'px';
             selfObj.style.top = pageY - shiftY - (pageY - shiftY) % 50 + 'px';
+            // console.log([Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]); 
+            if(overlapTaggedElements.includes([Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50])){
+              console.log("false zin")
+            }
           }else{
             selfObj.style.left = pageX - shiftX + 'px';
             selfObj.style.top = pageY - shiftY + 'px';
@@ -37,21 +44,23 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
         document.addEventListener('mouseup', function(event) {   
           document.removeEventListener('mousemove', onMouseMove);
           selfObj.onmouseup = null;
-          if(pageX - shiftX <= 600 && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){        
+          if((pageX - shiftX >= 5 && pageX - shiftX <= 605) && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){        
             selfObj.onmousedown = function(event){};
           };
           setInStone();
+          //AQ UNDA CHAVAMATO KODI, ROMELIC POULOBS DA AGNISHNAVS YVELA DATAGULI ELEMENTIS KOORDINATEBS
+          for(var i = 0; i < amongaia.length; i++){
+            overlapTaggedElements[i][0] = amongaia[i].x;
+            overlapTaggedElements[i][1] = amongaia[i].y;
+            // console.log(amongaia[i].x)
+            // console.log(amongaia[i].y)
+            // console.log(overlapTaggedElements);
+            console.log(overlapTaggedElements.forEach(element => {element == [Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]})) //FIX HERE, ENOUGH FOR NOW
+            // console.log([Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50])
+            // console.log(overlapTaggedElements.includes([Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]))
+          }
         });
 
-
-        // document.addEventListener('keyup', function(event){
-        //   if(event.key == "z" || event.key == "Z") {
-        //     setInStone();
-        //     for (let i = 1; i < amongaia.length; i++) {
-        //       amongaia[i].style.background = 'pink';
-        //     }
-        //   }
-        // })
         }
   
         function onMouseMove(event) {
@@ -83,7 +92,6 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
 
           document.addEventListener('keyup', function(event) { 
               lever = false;
-              // amogus();                                                //FIX ME PLZ
           });
 
 
@@ -105,7 +113,6 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
                 enterDroppable(breakAwayLeaveDroppable(currentDroppable, 2, rotation));
               }
               allElements = document.querySelectorAll('[id$="tagged"]');
-              // console.log(allElements); // es aris rac poulobs datagul ujrebs zionastoris mociquloido
             }}
             amogus();
 
@@ -126,23 +133,17 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
   
       function enterDroppable(location) {
         location.forEach(element => {
-          object = document.querySelector(`[id^="x=${element[0]} y=${element[1]}"]`);         
-
-          // if(x.includes(element[0]) && y.includes(element[1])){
-          //   console.log("very much so xd oi vey");
-          // }
-          // console.log("very much so xd oi vey");
-
+          object = document.querySelector(`[id^="x=${element[0]} y=${element[1]}"]`);
           object.style.background = 'pink';
           object.id += " tagged";
         })
-        tagged_elements = document.querySelectorAll('[id$="tagged"]');         //AQ IYO FUCKED UP YVELAFERI
+        tagged_elements = document.querySelectorAll('[id$="tagged"]');        
         var x = new Array(20);
         var y = new Array(20);
         for (let i = 0; i < tagged_elements.length; i++) {
           for (let j = 0; j < 2; j++) {
             split_id = tagged_elements[i].id.split(" ");
-            x[i] = parseInt(split_id[0].split("=")[1]);             //ES DAIKIDE, CADE ROM CURRENTDROPPABLE-DAN AMOIGO XD KACI
+            x[i] = parseInt(split_id[0].split("=")[1]);             
             y[i] = parseInt(split_id[1].split("=")[1]);
           }
         }
@@ -164,13 +165,11 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
       function breakAwayLeaveDroppable(coreBlock, shipLength, rotation) {
 
         _corePos = coreBlock.id.substring(0, coreBlock.id.length);
-        // console.log(coreBlock.id + " coreblock id");
         corePos = _corePos.split(" ");
         for (let i = 0; i < corePos.length; i++) {
           temp = corePos[i].split("=");
           corePos[i] = parseInt(temp[1]);
         }
-        // console.log(corePos);
 
         var location = new Array(1);
         for (var i = 0; i <= 1; i++) {
@@ -236,11 +235,8 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
         if(!lever2){
           lever2 = true;
           var temp2 = document.querySelectorAll('[id$="tagged"]');
-          // console.log(temp);            //AQAUROBA DAFIXE PLS CUDADVAR UKVE
           console.log(temp2);
-          // tagged_elements = temp2.concat(temp2);
           amongaia = Array.prototype.concat.call(...amongaia , ...temp2 );
-          // console.log(amongaia);
           for (let i = 1; i < amongaia.length; i++) {
             amongaia[i].style.background = 'pink';
           }
@@ -264,11 +260,7 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           self.style.background = "white";
         }
         else{
-          // console.log("Something went wrong!!");
-          console.log(element)
-          // console.log(element)
-          var answers = amongaia.forEach(index => {index == element}) ;                                
-          console.log(amongaia.includes(element));
+          console.log("Something went wrong!!");
         }
         self.onclick = function(event){}; //es ashorebs click powers basiskali
         // self.hidden = true;              es sxva versia zeda xazis, tumca lamazi araris, tan amit fers ver shevucvli
