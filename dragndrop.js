@@ -55,9 +55,27 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
             // console.log(amongaia[i].x)
             // console.log(amongaia[i].y)
             // console.log(overlapTaggedElements);
-            console.log(overlapTaggedElements.forEach(element => {element == [Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]})) //FIX HERE, ENOUGH FOR NOW
-            // console.log([Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50])
-            // console.log(overlapTaggedElements.includes([Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]))
+            // console.log(overlapTaggedElements.forEach(element => {element == [Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]})) //FIX HERE, ENOUGH FOR NOW
+          }
+          for(var i = 0; i<overlapTaggedElements.length;i++){
+
+            if(overlapTaggedElements[i][0] == Math.floor((pageX - shiftX + 50)/50)*50-45 && overlapTaggedElements[i][1] == Math.floor((pageY - shiftY - 50)/50)*50+50){
+              console.log("sas amogas")         //[PROGRESS RIGHT HERE]
+            }
+
+              // if(overlapTaggedElements[i] == [Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]){
+              //   console.log("AM WORKIG")
+              // }
+              // else{
+              //   // console.log("susmsogs")
+              //   // let sasimogi = new Array(2);
+              //   // sasimogi[0] = Math.floor((pageX - shiftX + 50)/50)*50-45
+              //   // sasimogi[1] = Math.floor((pageY - shiftY - 50)/50)*50+50
+              //   // console.log(sasimogi);
+              //   // console.log(overlapTaggedElements[i])
+
+              // }
+            
           }
         });
 
