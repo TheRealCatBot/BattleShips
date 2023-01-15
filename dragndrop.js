@@ -4,6 +4,7 @@ var rotation = 0;
 let belowCurrentDroppable = null;
 var lever = false;
 var lever2 = false;
+let lever3 = false;
 var location_buffer;
 var tagged_elements = [""];
 
@@ -41,14 +42,6 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
             amongaia[i].style.background = 'pink';
           }
           
-        document.addEventListener('mouseup', function(event) {   
-          document.removeEventListener('mousemove', onMouseMove);
-          selfObj.onmouseup = null;
-          if((pageX - shiftX >= 5 && pageX - shiftX <= 605) && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){        
-            selfObj.onmousedown = function(event){};
-          };
-          setInStone();
-          //AQ UNDA CHAVAMATO KODI, ROMELIC POULOBS DA AGNISHNAVS YVELA DATAGULI ELEMENTIS KOORDINATEBS
           for(var i = 0; i < amongaia.length; i++){
             overlapTaggedElements[i][0] = amongaia[i].x;
             overlapTaggedElements[i][1] = amongaia[i].y;
@@ -57,12 +50,14 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
             // console.log(overlapTaggedElements);
             // console.log(overlapTaggedElements.forEach(element => {element == [Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]})) //FIX HERE, ENOUGH FOR NOW
           }
+          if(lever3){
           for(var i = 0; i<overlapTaggedElements.length;i++){
-
             if(overlapTaggedElements[i][0] == Math.floor((pageX - shiftX + 50)/50)*50-45 && overlapTaggedElements[i][1] == Math.floor((pageY - shiftY - 50)/50)*50+50){
               console.log("sas amogas")         //[PROGRESS RIGHT HERE]
+              //ES UKVE MUSHAOBS ROGORC INTENDED. sawiroa mxolod ise gadawera kodis, rom ar dagasmevinos gemi zed. vapireb rom tu daemtxva lokacia lokacias, qveda ujrebi gawitldes da gemi daubrundes originali dislokaciis adgils.
             }
-
+          }}
+          console.log(lever3)
               // if(overlapTaggedElements[i] == [Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]){
               //   console.log("AM WORKIG")
               // }
@@ -76,7 +71,19 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
 
               // }
             
-          }
+          
+
+
+        document.addEventListener('mouseup', function(event) {   
+          document.removeEventListener('mousemove', onMouseMove);
+          selfObj.onmouseup = null;
+          if((pageX - shiftX >= 5 && pageX - shiftX <= 605) && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){        
+            selfObj.onmousedown = function(event){};
+          };
+          setInStone();
+          lever3 = true;
+          //AQ UNDA CHAVAMATO KODI, ROMELIC POULOBS DA AGNISHNAVS YVELA DATAGULI ELEMENTIS KOORDINATEBS
+
         });
 
         }
