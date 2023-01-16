@@ -7,6 +7,7 @@ var lever2 = false;
 let lever3 = false;
 var location_buffer;
 var tagged_elements = [""];
+let baseLocation = Array(2);
 
 var overlapTaggedElements = new Array(21);
 for (var i = 0; i < overlapTaggedElements.length; i++) {
@@ -23,6 +24,8 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
         selfObj.style.position = 'absolute';
         selfObj.style.zIndex = 1000;
         document.body.append(selfObj);
+        baseLocation = [selfObj.x, selfObj.y]
+        console.log(baseLocation)
 
         moveAt(event.pageX, event.pageY);
   
@@ -52,12 +55,14 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           }
           if(lever3){
           for(var i = 0; i<overlapTaggedElements.length;i++){
-            if(overlapTaggedElements[i][0] == Math.floor((pageX - shiftX + 50)/50)*50-45 && overlapTaggedElements[i][1] == Math.floor((pageY - shiftY - 50)/50)*50+50){
-              console.log("sas amogas")         //[PROGRESS RIGHT HERE]
-              //ES UKVE MUSHAOBS ROGORC INTENDED. sawiroa mxolod ise gadawera kodis, rom ar dagasmevinos gemi zed. vapireb rom tu daemtxva lokacia lokacias, qveda ujrebi gawitldes da gemi daubrundes originali dislokaciis adgils.
+            if(overlapTaggedElements[i][0] == Math.floor((pageX - shiftX + 50)/50)*50-45 && overlapTaggedElements[i][1] == Math.floor((pageY - shiftY - 50)/50)*50+50){        
+              document.removeEventListener('mousemove', onMouseMove);             //THIS ACTUALLY WORKS, BUT LOCKS THE SHIP AFTER JUMP, NEEDS FIXING
+              
+              selfObj.style.left = `${baseLocation[0]}px`
+              selfObj.style.top = `${baseLocation[1]}px`
+              // document.querySelector(`[id^="x=${overlapTaggedElements[i][0]} y=${overlapTaggedElements[i][1]}"]`).style.background = "red"; //FIX THIS WITH PROPER COORDINATES
             }
           }}
-          console.log(lever3)
               // if(overlapTaggedElements[i] == [Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]){
               //   console.log("AM WORKIG")
               // }
