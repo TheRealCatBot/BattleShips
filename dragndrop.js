@@ -5,6 +5,7 @@ let belowCurrentDroppable = null;
 var lever = false;
 var lever2 = false;
 let lever3 = false;
+let sentFromOvrlp = false;
 var location_buffer;
 var tagged_elements = [""];
 let baseLocation = Array(2);
@@ -24,8 +25,8 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
         selfObj.style.position = 'absolute';
         selfObj.style.zIndex = 1000;
         document.body.append(selfObj);
-        baseLocation = [selfObj.x, selfObj.y]
-        console.log(baseLocation)
+        // baseLocation = [selfObj.x, selfObj.y]
+        baseLocation = [697.6, 8];
 
         moveAt(event.pageX, event.pageY);
   
@@ -33,7 +34,6 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           if((pageX - shiftX >= 5 && pageX - shiftX <= 605) && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){      //AQ UNDA DAVAMATO OVERLAP-IS SAWINAAGMDEGO KODI
             selfObj.style.left = pageX - shiftX - (pageX - shiftX) % 50 + 'px';
             selfObj.style.top = pageY - shiftY - (pageY - shiftY) % 50 + 'px';
-            // console.log([Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]); 
             if(overlapTaggedElements.includes([Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50])){
               console.log("false zin")
             }
@@ -48,41 +48,24 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           for(var i = 0; i < amongaia.length; i++){
             overlapTaggedElements[i][0] = amongaia[i].x;
             overlapTaggedElements[i][1] = amongaia[i].y;
-            // console.log(amongaia[i].x)
-            // console.log(amongaia[i].y)
-            // console.log(overlapTaggedElements);
-            // console.log(overlapTaggedElements.forEach(element => {element == [Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]})) //FIX HERE, ENOUGH FOR NOW
-          }
+            }
           if(lever3){
           for(var i = 0; i<overlapTaggedElements.length;i++){
             if(overlapTaggedElements[i][0] == Math.floor((pageX - shiftX + 50)/50)*50-45 && overlapTaggedElements[i][1] == Math.floor((pageY - shiftY - 50)/50)*50+50){        
-              document.removeEventListener('mousemove', onMouseMove);             //THIS ACTUALLY WORKS, BUT LOCKS THE SHIP AFTER JUMP, NEEDS FIXING
-              
+              // document.removeEventListener('mousemove', onMouseMove);             //THIS ACTUALLY WORKS, BUT LOCKS THE SHIP AFTER JUMP, NEEDS FIXING
+
               selfObj.style.left = `${baseLocation[0]}px`
               selfObj.style.top = `${baseLocation[1]}px`
+              sentFromOvrlp = true;
               // document.querySelector(`[id^="x=${overlapTaggedElements[i][0]} y=${overlapTaggedElements[i][1]}"]`).style.background = "red"; //FIX THIS WITH PROPER COORDINATES
             }
           }}
-              // if(overlapTaggedElements[i] == [Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50]){
-              //   console.log("AM WORKIG")
-              // }
-              // else{
-              //   // console.log("susmsogs")
-              //   // let sasimogi = new Array(2);
-              //   // sasimogi[0] = Math.floor((pageX - shiftX + 50)/50)*50-45
-              //   // sasimogi[1] = Math.floor((pageY - shiftY - 50)/50)*50+50
-              //   // console.log(sasimogi);
-              //   // console.log(overlapTaggedElements[i])
-
-              // }
-            
-          
 
 
         document.addEventListener('mouseup', function(event) {   
           document.removeEventListener('mousemove', onMouseMove);
           selfObj.onmouseup = null;
-          if((pageX - shiftX >= 5 && pageX - shiftX <= 605) && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){        
+          if((pageX - shiftX >= 5 && pageX - shiftX <= 605) && (pageY - shiftY >= 100 && pageY - shiftY <= 700 && !sentFromOvrlp)){        //THIS NEEDS FIXING, WHENEVER SHIP IS DRAGGED ON TO THE GRID, THEN DRAGGED OFF, IT STILL FREEZES EVEN THOUGH IT IS OUTSIDE THE GRID
             selfObj.onmousedown = function(event){};
           };
           setInStone();
