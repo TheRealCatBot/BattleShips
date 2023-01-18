@@ -34,9 +34,6 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           if((pageX - shiftX >= 5 && pageX - shiftX <= 605) && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){      //AQ UNDA DAVAMATO OVERLAP-IS SAWINAAGMDEGO KODI
             selfObj.style.left = pageX - shiftX - (pageX - shiftX) % 50 + 'px';
             selfObj.style.top = pageY - shiftY - (pageY - shiftY) % 50 + 'px';
-            if(overlapTaggedElements.includes([Math.floor((pageX - shiftX + 50)/50)*50-45,Math.floor((pageY - shiftY - 50)/50)*50+50])){
-              console.log("false zin")
-            }
           }else{
             selfObj.style.left = pageX - shiftX + 'px';
             selfObj.style.top = pageY - shiftY + 'px';
@@ -44,16 +41,17 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           for (let i = 1; i < amongaia.length; i++) {
             amongaia[i].style.background = 'pink';
           }
-          
           for(var i = 0; i < amongaia.length; i++){
             overlapTaggedElements[i][0] = amongaia[i].x;
             overlapTaggedElements[i][1] = amongaia[i].y;
             }
           if(lever3){
           for(var i = 0; i<overlapTaggedElements.length;i++){
-            if(overlapTaggedElements[i][0] == Math.floor((pageX - shiftX + 50)/50)*50-45 && overlapTaggedElements[i][1] == Math.floor((pageY - shiftY - 50)/50)*50+50){        
+            let tempLocatVarX = Math.floor((pageX - shiftX + 50)/50)*50-45
+            let tempLocatVarY = Math.floor((pageY - shiftY - 50)/50)*50+50
+            if((overlapTaggedElements[i][0] == tempLocatVarX && overlapTaggedElements[i][1] == tempLocatVarY) || (overlapTaggedElements[i][0] == tempLocatVarX - 50 * rotation && overlapTaggedElements[i][1] == tempLocatVarY + 50*(1-rotation))){
               // document.removeEventListener('mousemove', onMouseMove);             //THIS ACTUALLY WORKS, BUT LOCKS THE SHIP AFTER JUMP, NEEDS FIXING
-
+              
               selfObj.style.left = `${baseLocation[0]}px`
               selfObj.style.top = `${baseLocation[1]}px`
               sentFromOvrlp = true;
@@ -253,6 +251,7 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           for (let i = 1; i < amongaia.length; i++) {
             amongaia[i].style.background = 'pink';
           }
+          sentFromOvrlp = false;
         }
       }
 
@@ -282,17 +281,7 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
 
 
 
-
-
-
-
-
-      //CREATE FUNTCTION 'SET IN STONE'     //DONE
-      //WHEN TOUCHING OTHER SHIPS THE PINK BLOCKS DISSAPEAR       
-      //MAKE IT NOT DO THAT
-
-
-      //FIRST DO THE PROPER ONMOUSEUP FUNCTION    //DONE
-
-
-      //DESIGN A SYSTEM THAT FINDS SHIPS IN REAL SPACE  //DONE, BETTER WAY
+      //almost done with overlapping, needs a bit more polishing, but its mostly good to go
+      //there is a bit of a visual glitch in the algorithm, if ships core block is the one overlapping and the rest of the ship is sticking out, it will still color them pink but will not get tagged
+      //
+      //NEXT UP ON THE LIST: fixing the code for ships that are larger (and smaller) that 2
