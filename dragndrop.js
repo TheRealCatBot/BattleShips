@@ -121,7 +121,8 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
               if (currentDroppable) { // null if we're not coming over a droppable now
                 // (maybe just left the droppable)
                 // console.log(enterDroppable(breakAwayLeaveDroppable(currentDroppable, 2, rotation)));
-                enterDroppable(breakAwayLeaveDroppable(currentDroppable, 2, rotation));
+                if(!sentFromOvrlp)  enterDroppable(breakAwayLeaveDroppable(currentDroppable, 2, rotation));
+                sentFromOvrlp = false;
               }
               allElements = document.querySelectorAll('[id$="tagged"]');
             }}
@@ -246,8 +247,8 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
         if(!lever2){
           lever2 = true;
           var temp2 = document.querySelectorAll('[id$="tagged"]');
-          console.log(temp2);
-          amongaia = Array.prototype.concat.call(...amongaia , ...temp2 );
+          // console.log(temp2);
+          amongaia = Array.prototype.concat.call(...amongaia , ...temp2);
           for (let i = 1; i < amongaia.length; i++) {
             amongaia[i].style.background = 'pink';
           }
