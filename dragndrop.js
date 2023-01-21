@@ -15,11 +15,12 @@ for (var i = 0; i < overlapTaggedElements.length; i++) {
   overlapTaggedElements[i] = new Array(2);
 }
 
-oriani_1.onmousedown = function(event){drag_and_drop(event, oriani_1)};
-oriani_2.onmousedown = function(event){drag_and_drop(event, oriani_2)};
-oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
+oriani_1.onmousedown = function(event){drag_and_drop(event, oriani_1, 2)};
+oriani_2.onmousedown = function(event){drag_and_drop(event, oriani_2, 2)};
+oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3, 2)};
+samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
 
-      function drag_and_drop(event, selfObj) {
+      function drag_and_drop(event, selfObj, length) {
         let shiftX = event.clientX - selfObj.getBoundingClientRect().left - 25;
         let shiftY = event.clientY - selfObj.getBoundingClientRect().top - 25;
         selfObj.style.position = 'absolute';
@@ -32,7 +33,7 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
   
         function moveAt(pageX, pageY) {
           if((pageX - shiftX >= 5 && pageX - shiftX <= 605) && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){      //AQ UNDA DAVAMATO OVERLAP-IS SAWINAAGMDEGO KODI
-            selfObj.style.left = pageX - shiftX - (pageX - shiftX) % 50 + 'px';
+            selfObj.style.left = pageX - shiftX - (pageX - shiftX) % 50 +5+ 'px';
             selfObj.style.top = pageY - shiftY - (pageY - shiftY) % 50 + 'px';
           }else{
             selfObj.style.left = pageX - shiftX + 'px';
@@ -113,7 +114,7 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           function amogus(){
             if (currentDroppable != droppableBelow) {
               if (currentDroppable) { // null when we were not over a droppable before this event
-                leaveDroppable(breakAwayLeaveDroppable(currentDroppable, 2, rotation));
+                leaveDroppable(breakAwayLeaveDroppable(currentDroppable, length, rotation));
                 // console.log(breakAwayLeaveDroppable(droppableBelow, 2, 0)) //abrunebs location-s, location aris array romelshic aris koordinatebi aseve arrays saxit
               }
               currentDroppable = droppableBelow;
@@ -121,7 +122,7 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
               if (currentDroppable) { // null if we're not coming over a droppable now
                 // (maybe just left the droppable)
                 // console.log(enterDroppable(breakAwayLeaveDroppable(currentDroppable, 2, rotation)));
-                if(!sentFromOvrlp)  enterDroppable(breakAwayLeaveDroppable(currentDroppable, 2, rotation));
+                if(!sentFromOvrlp)  enterDroppable(breakAwayLeaveDroppable(currentDroppable, length, rotation));
                 sentFromOvrlp = false;
               }
               allElements = document.querySelectorAll('[id$="tagged"]');
@@ -183,7 +184,8 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3)};
           corePos[i] = parseInt(temp[1]);
         }
 
-        var location = new Array(1);
+        let locatLength = length - 1
+        var location = new Array(locatLength);
         for (var i = 0; i <= 1; i++) {
           location[i] = new Array(1);
         }
