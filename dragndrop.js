@@ -21,8 +21,10 @@ oriani_3.onmousedown = function(event){drag_and_drop(event, oriani_3, 2)};
 samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
 
       function drag_and_drop(event, selfObj, length) {
-        let shiftX = event.clientX - selfObj.getBoundingClientRect().left - 25;
+        let shiftX = event.clientX - selfObj.getBoundingClientRect().left - 25;                                   //FIX THIS
         let shiftY = event.clientY - selfObj.getBoundingClientRect().top - 25;
+        // let shiftX = selfObj.getBoundingClientRect().left - 25;
+        // let shiftY = selfObj.getBoundingClientRect().top - 25;
         selfObj.style.position = 'absolute';
         selfObj.style.zIndex = 1000;
         document.body.append(selfObj);
@@ -32,7 +34,7 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
         moveAt(event.pageX, event.pageY);
   
         function moveAt(pageX, pageY) {
-          if((pageX - shiftX >= 5 && pageX - shiftX <= 605) && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){      //AQ UNDA DAVAMATO OVERLAP-IS SAWINAAGMDEGO KODI
+          if((pageX - shiftX >= 5 && pageX - shiftX <= 605) && (pageY - shiftY >= 100 && pageY - shiftY <= 700)){     
             selfObj.style.left = pageX - shiftX - (pageX - shiftX) % 50 +5+ 'px';
             selfObj.style.top = pageY - shiftY - (pageY - shiftY) % 50 + 'px';
           }else{
@@ -115,6 +117,7 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
             if (currentDroppable != droppableBelow) {
               if (currentDroppable) { // null when we were not over a droppable before this event
                 leaveDroppable(breakAwayLeaveDroppable(currentDroppable, length, rotation));
+
                 // console.log(breakAwayLeaveDroppable(droppableBelow, 2, 0)) //abrunebs location-s, location aris array romelshic aris koordinatebi aseve arrays saxit
               }
               currentDroppable = droppableBelow;
@@ -184,12 +187,10 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
           corePos[i] = parseInt(temp[1]);
         }
 
-        let locatLength = length - 1
-        var location = new Array(locatLength);
-        for (var i = 0; i <= 1; i++) {
+        var location = new Array(shipLength-1);
+        for (let i = 0; i < shipLength; i++) {
           location[i] = new Array(1);
         }
-
         if(rotation == 0){ //gemis cxviri iyureba qvevit
           if(location_buffer != null){
           leaveDroppable(location_buffer);
