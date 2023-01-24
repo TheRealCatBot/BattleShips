@@ -53,7 +53,7 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
             let tempLocatVarX = Math.floor((pageX - shiftX + 50)/50)*50-45
             let tempLocatVarY = Math.floor((pageY - shiftY - 50)/50)*50+50
             // console.log(tempLocatVarX - (50 * rotation))
-            console.log(overlapTaggedElements[i][0])  //NEEDS FIXING  
+            console.log(overlapTaggedElements[i][0])                                  //NEEDS FIXING  ASAP
             // console.log(tempLocatVarX)
             if((overlapTaggedElements[i][0] == tempLocatVarX && overlapTaggedElements[i][1] == tempLocatVarY) || (overlapTaggedElements[i][0] == tempLocatVarX - (50 * rotation) && overlapTaggedElements[i][1] == tempLocatVarY + 50*(1-rotation))){
               
