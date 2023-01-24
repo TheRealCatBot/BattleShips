@@ -52,9 +52,13 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
           for(var i = 0; i<overlapTaggedElements.length;i++){
             let tempLocatVarX = Math.floor((pageX - shiftX + 50)/50)*50-45
             let tempLocatVarY = Math.floor((pageY - shiftY - 50)/50)*50+50
-            if((overlapTaggedElements[i][0] == tempLocatVarX && overlapTaggedElements[i][1] == tempLocatVarY) || (overlapTaggedElements[i][0] == tempLocatVarX - 50 * rotation && overlapTaggedElements[i][1] == tempLocatVarY + 50*(1-rotation))){
-              // document.removeEventListener('mousemove', onMouseMove);             //THIS ACTUALLY WORKS, BUT LOCKS THE SHIP AFTER JUMP, NEEDS FIXING
+            // console.log(tempLocatVarX - (50 * rotation))
+            console.log(overlapTaggedElements[i][0])  //NEEDS FIXING  
+            // console.log(tempLocatVarX)
+            if((overlapTaggedElements[i][0] == tempLocatVarX && overlapTaggedElements[i][1] == tempLocatVarY) || (overlapTaggedElements[i][0] == tempLocatVarX - (50 * rotation) && overlapTaggedElements[i][1] == tempLocatVarY + 50*(1-rotation))){
               
+              // document.removeEventListener('mousemove', onMouseMove);             //THIS ACTUALLY WORKS, BUT LOCKS THE SHIP AFTER JUMP, NEEDS FIXING
+
               selfObj.style.left = `${baseLocation[0]}px`
               selfObj.style.top = `${baseLocation[1]}px`
               sentFromOvrlp = true;
