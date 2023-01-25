@@ -45,20 +45,21 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
             amongaia[i].style.background = 'pink';
           }
           for(var i = 0; i < amongaia.length; i++){
-            overlapTaggedElements[i][0] = amongaia[i].x;
+            overlapTaggedElements[i][0] = amongaia[i].x + 7;
+            // console.log((amongaia[i].x + 7))
             overlapTaggedElements[i][1] = amongaia[i].y;
             }
           if(lever3){
           for(var i = 0; i<overlapTaggedElements.length;i++){
-            let tempLocatVarX = Math.floor((pageX - shiftX + 50)/50)*50-45
-            let tempLocatVarY = Math.floor((pageY - shiftY - 50)/50)*50+50
-            // console.log(tempLocatVarX - (50 * rotation))
-            console.log(overlapTaggedElements[i][0])                                  //NEEDS FIXING  ASAP
-            // console.log(tempLocatVarX)
-            if((overlapTaggedElements[i][0] == tempLocatVarX && overlapTaggedElements[i][1] == tempLocatVarY) || (overlapTaggedElements[i][0] == tempLocatVarX - (50 * rotation) && overlapTaggedElements[i][1] == tempLocatVarY + 50*(1-rotation))){
+            let tempLocatVarX = Math.floor((pageX - shiftX + 50)/50)*50-50
+            let tempLocatVarY = Math.floor((pageY - shiftY - 50)/50)*50+50                                 
+            // console.log(overlapTaggedElements[i][1])                              //FIXED
+            // console.log(tempLocatVarY + " templocatx")
+            // console.log(overlapTaggedElements[i][1] == tempLocatVarY && overlapTaggedElements[i][0]-12 == tempLocatVarX)
+            if((overlapTaggedElements[i][0]-12 == tempLocatVarX && overlapTaggedElements[i][1] == tempLocatVarY) || (overlapTaggedElements[i][0]-12 == tempLocatVarX - (50 * rotation) && overlapTaggedElements[i][1] == tempLocatVarY + 50*(1-rotation))){
               
               // document.removeEventListener('mousemove', onMouseMove);             //THIS ACTUALLY WORKS, BUT LOCKS THE SHIP AFTER JUMP, NEEDS FIXING
-
+              console.log("im legit working dead on jod")                             
               selfObj.style.left = `${baseLocation[0]}px`
               selfObj.style.top = `${baseLocation[1]}px`
               sentFromOvrlp = true;
