@@ -94,6 +94,7 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
           document.addEventListener('keydown', function(event) {     
             lever2 = true;                                            //FIXED THE INITIAL SHIP LEAVING A SHADOW IF ROTATED
             if(event.key == "r" || event.key == "R") {
+              
               if(!lever){
                 lever = true;
                 if(rotation < 1){
@@ -210,6 +211,9 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
             }
           }
           location_buffer = location;
+          // if(location[location.length-1][1] >= 11) location[location.length-1][1] = corePos[1] - 50*(shipLength+1)
+          if(location[location.length-1][1] >= 11)
+
           return location;
           
         }else if(rotation == 1){ //gemis cxviri iyureba marcxniv
@@ -224,6 +228,9 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
             }
           }
           location_buffer = location;
+          // if(location[location.length-1][0] >= 11) location[location.length-1][0] = corePos[0] + 50*(shipLength+1)
+          if(location[location.length-1][0] >= 11)
+          
           return location;
         // }else if(rotation == 2){ //gemis cxviri iyureba zemot   //SCRAPPED CONCEPT, DROPPED CUZ ZEMOT YUREBA GLITCHAVS TF OUT OF YVELAFERI
         //   for (let i = 0; i < shipLength; i++) {
