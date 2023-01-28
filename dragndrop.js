@@ -202,7 +202,7 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
           leaveDroppable(location_buffer);
           }
           for (let i = 0; i < shipLength; i++) {
-            if(corePos[1] != 11){
+            if(corePos[1] < (13 - shipLength)){             //ADD ROTATION
               location[i][0] = corePos[0];            
               location[i][1] = corePos[1] + i;
             }else{
@@ -212,14 +212,14 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
           }
           location_buffer = location;
           // if(location[location.length-1][1] >= 11) location[location.length-1][1] = corePos[1] - 50*(shipLength+1)
-          if(location[location.length-1][1] >= 11)
+          // if(location[location.length-1][1] > 11) console.log("+11 haha")
 
           return location;
           
         }else if(rotation == 1){ //gemis cxviri iyureba marcxniv
           leaveDroppable(location_buffer);
           for (let i = 0; i < shipLength; i++) {
-            if(corePos[0] != 0){
+            if(corePos[0] > shipLength){
             location[i][0] = corePos[0] - i;
             location[i][1] = corePos[1];
             }else{
@@ -229,7 +229,7 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
           }
           location_buffer = location;
           // if(location[location.length-1][0] >= 11) location[location.length-1][0] = corePos[0] + 50*(shipLength+1)
-          if(location[location.length-1][0] >= 11)
+          // if(location[location.length-1][0] > 11) console.log("-11 haha")
           
           return location;
         // }else if(rotation == 2){ //gemis cxviri iyureba zemot   //SCRAPPED CONCEPT, DROPPED CUZ ZEMOT YUREBA GLITCHAVS TF OUT OF YVELAFERI
