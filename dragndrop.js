@@ -23,8 +23,6 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
       function drag_and_drop(event, selfObj, length) {
         let shiftX = event.clientX - selfObj.getBoundingClientRect().left - 25;                                   //FIX THIS
         let shiftY = event.clientY - selfObj.getBoundingClientRect().top - 25;
-        // let shiftX = selfObj.getBoundingClientRect().left - 25;
-        // let shiftY = selfObj.getBoundingClientRect().top - 25;
         selfObj.style.position = 'absolute';
         selfObj.style.zIndex = 1000;
         document.body.append(selfObj);
@@ -53,11 +51,13 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
           for(var i = 0; i<overlapTaggedElements.length;i++){
             let tempLocatVarX = Math.floor((pageX - shiftX + 50)/50)*50-50
             let tempLocatVarY = Math.floor((pageY - shiftY - 50)/50)*50+50                                 
-            // console.log(overlapTaggedElements[i][1])                              //FIXED
-            // console.log(tempLocatVarY + " templocatx")
-            // console.log(overlapTaggedElements[i][1] == tempLocatVarY && overlapTaggedElements[i][0]-12 == tempLocatVarX)
-            if((overlapTaggedElements[i][0]-12 == tempLocatVarX && overlapTaggedElements[i][1] == tempLocatVarY) || (overlapTaggedElements[i][0]-12 == tempLocatVarX - (50 * rotation) && overlapTaggedElements[i][1] == tempLocatVarY + 50*(1-rotation))){
+            if((overlapTaggedElements[i][0]-12 == tempLocatVarX && overlapTaggedElements[i][1] == tempLocatVarY) || 
+            (overlapTaggedElements[i][0]-12 == tempLocatVarX - (50 * rotation) && overlapTaggedElements[i][1] == tempLocatVarY + 50*(1-rotation)) ){
               
+              // || 
+              // (overlapTaggedElements[i][0]-62 == tempLocatVarX - (50 * rotation) && overlapTaggedElements[i][1] == tempLocatVarY + 50*(1-rotation)) ||
+              // (overlapTaggedElements[i][0]+38 == tempLocatVarX - (50 * rotation) && overlapTaggedElements[i][1] == tempLocatVarY + 50*(1-rotation))
+
               // document.removeEventListener('mousemove', onMouseMove);             //THIS ACTUALLY WORKS, BUT LOCKS THE SHIP AFTER JUMP, NEEDS FIXING
               console.log("im legit working dead on jod")                             
               selfObj.style.left = `${baseLocation[0]}px`
@@ -76,7 +76,6 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
           };
           setInStone();
           lever3 = true;
-          //AQ UNDA CHAVAMATO KODI, ROMELIC POULOBS DA AGNISHNAVS YVELA DATAGULI ELEMENTIS KOORDINATEBS
 
         });
 
@@ -99,10 +98,16 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
                 lever = true;
                 if(rotation < 1){
                 rotation += 1;
+                selfObj.style.transform = 'rotate(90deg)'
+                // selfObj.style.left = `${parseInt(selfObj.style.left)+40}px`
+                // selfObj.style.top = `${parseInt(selfObj.style.top)-40}px`
+                // console.log(parseInt(selfObj.style.left))
+                // console.log(typeof(selfObj.style.left))
+                
                 }else{
-                  rotation = 0;
+                rotation = 0;
+                selfObj.style.transform = 'rotate(0deg)'
                 }
-                selfObj.style.tansform = 'rotate(90)';
               }
               amogus();
               setInStone();
@@ -123,14 +128,10 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
             if (currentDroppable != droppableBelow) {
               if (currentDroppable) { // null when we were not over a droppable before this event
                 leaveDroppable(breakAwayLeaveDroppable(currentDroppable, length, rotation));
-
-                // console.log(breakAwayLeaveDroppable(droppableBelow, 2, 0)) //abrunebs location-s, location aris array romelshic aris koordinatebi aseve arrays saxit
               }
               currentDroppable = droppableBelow;
               belowCurrentDroppable = droppableBelowBelow;
               if (currentDroppable) { // null if we're not coming over a droppable now
-                // (maybe just left the droppable)
-                // console.log(enterDroppable(breakAwayLeaveDroppable(currentDroppable, 2, rotation)));
                 if(!sentFromOvrlp)  enterDroppable(breakAwayLeaveDroppable(currentDroppable, length, rotation));
                 sentFromOvrlp = false;
               }
@@ -211,8 +212,6 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
             }
           }
           location_buffer = location;
-          // if(location[location.length-1][1] >= 11) location[location.length-1][1] = corePos[1] - 50*(shipLength+1)
-          // if(location[location.length-1][1] > 11) console.log("+11 haha")
 
           return location;
           
