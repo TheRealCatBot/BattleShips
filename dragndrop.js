@@ -26,19 +26,6 @@ samiani_1.onmousedown = function(event){drag_and_drop(event, samiani_1, 3)};
 samiani_2.onmousedown = function(event){drag_and_drop(event, samiani_2, 3)};
 xutiani_1.onmousedown = function(event){drag_and_drop(event, xutiani_1, 5)};
 
-
-const net = require('net');
-
-module.exports = (options) => {
-  // start the node
-  return () => {
-     // stop the node
-  };
-};
-
-
-
-
       function drag_and_drop(event, selfObj, length) {
         let shiftX = event.clientX - selfObj.getBoundingClientRect().left - 25;                                   //FIX THIS
         let shiftY = event.clientY - selfObj.getBoundingClientRect().top - 25;
